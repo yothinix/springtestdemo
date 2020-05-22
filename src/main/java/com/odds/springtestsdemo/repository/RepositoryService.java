@@ -26,8 +26,11 @@ public class RepositoryService {
 
         ResponseEntity<String> response = restTemplate.exchange(URL, HttpMethod.GET, null, String.class);
         JSONArray responseFromGitHub = new JSONArray(response.getBody());
-        JSONObject repo = new JSONObject(responseFromGitHub.get(0).toString());
+        if (responseFromGitHub.length() == 0) {
+            return repository;
+        }
 
+        JSONObject repo = new JSONObject(responseFromGitHub.get(0).toString());
         repository.setId(repo.getInt("id"));
         repository.setName(repo.getString("name"));
         repository.setUrl(repo.getString("url"));

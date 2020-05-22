@@ -1,7 +1,13 @@
 package com.odds.springtestsdemo.repository;
 
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+
 public class RepositoryModel {
+    @NotNull
     private Integer id;
+
+    @NotBlank
     private String name;
     private String url;
 
